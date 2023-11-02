@@ -23,6 +23,7 @@ jobs:
 
       - uses: sigstore/gh-action-sigstore-python@v2.1.0
         with:
+          tag_name: latest
           inputs: cosign.pub
 
       - name: Upload artifacts
