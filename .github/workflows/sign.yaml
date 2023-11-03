@@ -29,7 +29,6 @@ jobs:
         uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 # v3.1.3
         with:
           name: cosign.pub.sigstore
-          path: cosign.pub.sigstore
 
   release-github:
     needs: sign
@@ -40,8 +39,6 @@ jobs:
     steps:
       - name: Download artifacts directories # goes to current working directory
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
-        with:
-          path: downloads/cosign.pub.sigstore
 
       - name: Upload artifacts to github
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
@@ -49,5 +46,5 @@ jobs:
           tag_name: latest
           files: |
             cosign.pub
-            downloads/cosign.pub.sigstore
+            cosign.pub.sigstore
       
