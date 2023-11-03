@@ -12,14 +12,16 @@ To securely download the public key, run the following commands:
 
 ```
 # Download the public key release artifact
-wget https://github.com/ComplyHubDev/sigstore-pubkey/releases/cosign.pub
+wget https://github.com/ComplyHubDev/sigstore-pubkey/releases/download/latest/cosign.pub
 
 # Download the artifact Sigstore bundle containing the verification materials
-wget https://github.com/ComplyHubDev/sigstore-pubkey/releases/cosign.pub.sigstore
+wget https://github.com/ComplyHubDev/sigstore-pubkey/releases/download/latest/cosign.pub.sigstore
 
 # Verify the signature authenticity with sigstore-python
 sigstore verify github \
---cert-identity https://github.com/sigstore/sigstore-python/.github/workflows/sign-pubkey.yaml \
+--cert-identity https://github.com/ComplyHubDev/sigstore-pubkey/.github/workflows/sign.yaml@refs/heads/main \
+--repository ComplyHubDev/sigstore-pubkey \
+--ref refs/heads/main \
 --bundle cosign.pub.sigstore \
 cosign.pub
 ```
