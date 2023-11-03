@@ -47,6 +47,6 @@ jobs:
         with:
           tag_name: latest
           files: |
-            ${{ GITHUB_WORKSPACE}}/cosign.pub
-            ${{ GITHUB_WORKSPACE}}/cosign.pub.sigstore
+            $GITHUB_WORKSPACE/cosign.pub
+            $GITHUB_WORKSPACE/cosign.pub.sigstore
       
