@@ -1,0 +1,35 @@
+name: Release and sign the ComplyHub.dev Sigstore public key
+
+on:
+  push:
+    paths:
+      - cosign.pub
+  workflow_dispatch:
+
+
+permissions:
+  contents: write
+
+jobs:
+
+  sign:
+    name: Release and sign artifacts
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - uses: sigstore/gh-action-sigstore-python@v2.1.0
+        with:
+          inputs: cosign.pub
+
+      - name: Upload artifacts to github
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
+        with:
+          tag_name: latest
+          files: |
+            cosign.pub
+            cosign.pub.sigstore
+      
