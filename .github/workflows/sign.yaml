@@ -32,13 +32,6 @@ jobs:
           path: cosign.pub.sigstore
           if-no-files-found: error
 
-  release-github:
-    needs: sign
-    runs-on: ubuntu-latest
-    permissions:
-      # Needed to upload release assets.
-      contents: write
-    steps:
       - name: Download artifacts directories # goes to current working directory
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
 
@@ -47,6 +40,6 @@ jobs:
         with:
           tag_name: latest
           files: |
-            $GITHUB_WORKSPACE/cosign.pub
-            $GITHUB_WORKSPACE/cosign.pub.sigstore
+            cosign.pub
+            cosign.pub.sigstore
       
